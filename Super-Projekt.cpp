@@ -1,8 +1,10 @@
 #include <iostream>
+#include <fstream>
 #include <iomanip>
 #include <vector>
 #include <string>
 #include <utility>
+
 
 class kvadrat {
 private:
@@ -11,7 +13,7 @@ private:
 	char pijun = ' ';
 
 public:
-
+	
 	kvadrat()
 	{
 	}
@@ -85,7 +87,24 @@ void refreshPloce(kvadrat field[8][8], char currentPlayer);
 void dodatanPotez(int& selectX, int& selectY, int& targetX, int& targetY);
 
 int main()
-{
+{   
+	std::fstream datoteka;
+	char staraIgra;
+	std::cout << "Hocete li ucitati zadnju igru? (y/n): ";
+	std:: cin >> staraIgra;
+	std:: cin.clear();
+	std:: cin.ignore();
+	std:: string saveIgre;
+	if (tolower(staraIgra) == 'y')
+	{
+		//otvoriu datoteku
+		datoteka.open("saveIgre.txt", std::ios::binary| std::ios::in);
+		datoteka.read((char*)&saveIgre, sizeof(saveIgre));
+	} else 
+	
+
+	
+
 	start();
 	system("pause>0");
 }
@@ -347,6 +366,8 @@ void refreshPloce(kvadrat poljePolja[8][8], char trenutacniIgrac)
 
 	std::cout << "\n";
 	std::cout << "\nTrenutacni igrac: " << trenutacniIgrac << "\n";
+	
+
 }
 
 void dodatanPotez(int& selectX, int& selectY, int& targetX, int& targetY)
