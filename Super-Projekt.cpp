@@ -5,7 +5,7 @@
 #include <string>
 #include <utility>
 
-using namespace std;
+
 
 class kvadrat {
 private:
@@ -93,30 +93,29 @@ int main()
 	kvadrat polje[8][8];
 	int selectX, selectY, targetX, targetY;
 
-	fstream file;
-	cout << "Zelite li ucitati neku od prijasnjih igra? [y/n] ?";
-	string choice;
-	getline(cin, choice);
-	string FILENAME;
+	std::fstream file;
+	std::cout << "Zelite li ucitati neku od prijasnjih igra? [y/n] ?";
+	std::string choice;
+	std::getline(std::cin, choice);
+	std::string FILENAME;
 
 	if (choice == "Y"|| choice =="y")
 	{
 		system("cls");
-		cout << "Ime spremljene datoteke? ";
-		cin >> FILENAME;
-		cout << "Ucitavanje igre! ";
-		file.open(FILENAME, ios::binary | ios::in);
+		std::cout << "Ime spremljene datoteke? ";
+		std::cin >> FILENAME;
+		std::cout << "Ucitavanje igre! ";
+		file.open(FILENAME, std::ios::binary | std::ios::in);
 		if (file.fail())
 		{
-			cout << "Greska pri otvaranju " << FILENAME << ". Provjerie jeste li kreirali datoteku i je li ona pravilno napisana!\n";
+			std::cout << "Greska pri otvaranju " << FILENAME << ". Provjerie jeste li kreirali datoteku i je li ona pravilno napisana!\n";
 			return 0;
 		}
 		/*file.read((char*)&targetX, sizeof(targetX));
 		file.read((char*)&targetY, sizeof(targetY));*/
 		file.read((char*)&polje, sizeof(polje));
 		file.close();
-		cout << "Ucitana igra! ";
-
+		std::cout << "Ucitana igra! ";
 	}
 
 
@@ -155,15 +154,15 @@ int main()
 
 				if (red_from == 's' && stupac_from == 'v')
 				{
-					cout << "Upisi ime za spremanje datoteke: ";
-					cout << "Spremanje igre!" << endl;
-					cin >> FILENAME;
-					file.open(FILENAME, ios::binary | ios::out);
+					std::cout << "Upisi ime za spremanje datoteke: ";
+					std::cout << "Spremanje igre!" << std::endl;
+					std::cin >> FILENAME;
+					file.open(FILENAME, std::ios::binary | std::ios::out);
 					/*file.write((char*)&targetX, sizeof(targetX));
 					file.write((char*)&targetY, sizeof(targetY));*/
 					file.write((char*)&polje, sizeof(polje));
 					file.close();
-					cout << "Igra spremljena!";
+					std::cout << "Igra spremljena!";
 					return 0;
 				}
 
