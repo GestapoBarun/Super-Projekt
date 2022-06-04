@@ -5,6 +5,7 @@
 #include <string>
 #include <utility>
 
+using namespace std;
 
 class kvadrat {
 private:
@@ -13,7 +14,7 @@ private:
 	char pijun = ' ';
 
 public:
-	
+
 	kvadrat()
 	{
 	}
@@ -81,44 +82,51 @@ public:
 	}
 };
 
-void start();
-void promjenaIgraca(char& player, bool& anotherTarget, bool& selectSet, bool& targetSet);
-void refreshPloce(kvadrat field[8][8], char currentPlayer);
+
+void promjenaIgraca(char& igrac, bool& dodatnaMeta, bool& selectSet, bool& targetSet);
+void refreshPloce(kvadrat polje[8][8], char trenutacniIgrac);
 void dodatanPotez(int& selectX, int& selectY, int& targetX, int& targetY);
 
+///////////////////////////////////////////////////
 int main()
-{   
-	std::fstream datoteka;
-	char staraIgra;
-	std::cout << "Hocete li ucitati zadnju igru? (y/n): ";
-	std:: cin >> staraIgra;
-	std:: cin.clear();
-	std:: cin.ignore();
-	std:: string saveIgre;
-	if (tolower(staraIgra) == 'y')
-	{
-		//otvoriu datoteku
-		datoteka.open("saveIgre.txt", std::ios::binary| std::ios::in);
-		datoteka.read((char*)&saveIgre, sizeof(saveIgre));
-	} else 
-	
-
-	
-
-	start();
-	system("pause>0");
-}
-
-void start()
 {
 	kvadrat polje[8][8];
+	int selectX, selectY, targetX, targetY;
+
+	fstream file;
+	cout << "Do you want to load last game [y/n] ?";
+	string choice;
+	getline(cin, choice);
+	string FILENAME;
+
+	if (choice == "Y"|| choice =="y")
+	{
+		system("cls");
+		cout << "Name of save file? ";
+		cin >> FILENAME;
+		cout << "Loading game!";
+		file.open(FILENAME, ios::binary | ios::in);
+		if (file.fail())
+		{
+			cout << "Greska pri otvaranju " << FILENAME << ". Provjerie jeste li kreirali datoteku i je li ona pravilno napisana!\n";
+			return 0;
+		}
+		/*file.read((char*)&targetX, sizeof(targetX));
+		file.read((char*)&targetY, sizeof(targetY));*/
+		file.read((char*)&polje, sizeof(polje));
+		file.close();
+		cout << "Loaded game!";
+
+	}
+
+
 
 	char trenutacniPotez = 'B';
 
 	bool dodatnaMeta = false;
 
 	std::string odabir, target;
-	int selectX, selectY, targetX, targetY;
+
 	bool selectSet = false;
 	bool targetSet = false;
 
@@ -134,14 +142,30 @@ void start()
 	{
 		refreshPloce(polje, trenutacniPotez);
 
-		//////////////select
+
 		do
 		{
 			if (selectSet == false)
 			{
-				std::cout << "\nIzaberi pijuna (npr. a3): ";
+				std::cout << "\nIzaberi pijuna (npr. a3) ili upisi sv da spremis igru: ";
 				getline(std::cin, odabir);
 				odabir[0] = tolower(odabir[0]);
+				char red_from = odabir[0];
+				char stupac_from = odabir[1];
+
+				if (red_from == 's' && stupac_from == 'v')
+				{
+					cout << "Enter save name: ";
+					cout << "Saving game!" << endl;
+					cin >> FILENAME;
+					file.open(FILENAME, ios::binary | ios::out);
+					/*file.write((char*)&targetX, sizeof(targetX));
+					file.write((char*)&targetY, sizeof(targetY));*/
+					file.write((char*)&polje, sizeof(polje));
+					file.close();
+					cout << "Game saved!";
+					return 0;
+				}
 
 				if ((odabir[1] > '0' && odabir[1] <= '8') && (odabir[0] >= 'a' && odabir[0] <= 'h'))
 				{
@@ -170,7 +194,7 @@ void start()
 			}
 		} while (true);
 
-		//////////////target
+
 		do
 		{
 			std::cout << "\nIzaberi polje koje napadas: ";
@@ -261,8 +285,11 @@ void start()
 		} while (true);
 		promjenaIgraca(trenutacniPotez, dodatnaMeta, selectSet, targetSet);
 	} while (true);
+	system("pause>0");
 }
 
+
+////
 void promjenaIgraca(char& igrac, bool& novaMeta, bool& selectSet, bool& targetSet)
 {
 	if (novaMeta == true)
@@ -300,7 +327,7 @@ void promjenaIgraca(char& igrac, bool& novaMeta, bool& selectSet, bool& targetSe
 	selectSet = false;
 }
 
-void refreshPloce(kvadrat poljePolja[8][8], char trenutacniIgrac)
+void refreshPloce(kvadrat polje[8][8], char trenutacniIgrac)
 {
 	system("cls");
 
@@ -334,7 +361,7 @@ void refreshPloce(kvadrat poljePolja[8][8], char trenutacniIgrac)
 				}
 				else if (sirina % 4 == 2)
 				{
-					poljePolja[sirina / 4][visina / 4].ispisPolja();
+					polje[sirina / 4][visina / 4].ispisPolja();
 				}
 				else if (sirina % 4 == 0)
 				{
@@ -366,7 +393,7 @@ void refreshPloce(kvadrat poljePolja[8][8], char trenutacniIgrac)
 
 	std::cout << "\n";
 	std::cout << "\nTrenutacni igrac: " << trenutacniIgrac << "\n";
-	
+
 
 }
 
