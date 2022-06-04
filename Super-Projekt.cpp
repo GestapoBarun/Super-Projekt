@@ -99,7 +99,7 @@ int main()
 	std::getline(std::cin, choice);
 	std::string FILENAME;
 
-	if (choice == "Y"|| choice =="y")
+	if (choice == "Y" || choice == "y")
 	{
 		system("cls");
 		std::cout << "Ime spremljene datoteke? ";
@@ -129,17 +129,21 @@ int main()
 	bool selectSet = false;
 	bool targetSet = false;
 
-	for (int y = 0; y < 8; y++)
+	if (choice != "Y" && choice != "y")
 	{
-		for (int x = 0; x < 8; x++)
+		for (int y = 0; y < 8; y++)
 		{
-			polje[x][y] = kvadrat(x, y);
+			for (int x = 0; x < 8; x++)
+			{
+				polje[x][y] = kvadrat(x, y);
+			}
 		}
 	}
-
+	
 	do
 	{
-		refreshPloce(polje, trenutacniPotez);
+		
+			refreshPloce(polje, trenutacniPotez);
 
 
 		do
@@ -152,7 +156,7 @@ int main()
 				char red_from = odabir[0];
 				char stupac_from = odabir[1];
 
-				if (red_from == 's' && stupac_from == 'v')
+				if ((red_from == 's' && stupac_from == 'v') || (red_from == 'S' && stupac_from == 'v') || (red_from == 'S' && stupac_from == 'V'))
 				{
 					std::cout << "Upisi ime za spremanje datoteke: ";
 					std::cout << "Spremanje igre!" << std::endl;
