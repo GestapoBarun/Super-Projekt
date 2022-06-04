@@ -94,7 +94,7 @@ int main()
 	int selectX, selectY, targetX, targetY;
 
 	fstream file;
-	cout << "Do you want to load last game [y/n] ?";
+	cout << "Zelite li ucitati neku od prijasnjih igra? [y/n] ?";
 	string choice;
 	getline(cin, choice);
 	string FILENAME;
@@ -102,9 +102,9 @@ int main()
 	if (choice == "Y"|| choice =="y")
 	{
 		system("cls");
-		cout << "Name of save file? ";
+		cout << "Ime spremljene datoteke? ";
 		cin >> FILENAME;
-		cout << "Loading game!";
+		cout << "Ucitavanje igre! ";
 		file.open(FILENAME, ios::binary | ios::in);
 		if (file.fail())
 		{
@@ -115,7 +115,7 @@ int main()
 		file.read((char*)&targetY, sizeof(targetY));*/
 		file.read((char*)&polje, sizeof(polje));
 		file.close();
-		cout << "Loaded game!";
+		cout << "Ucitana igra! ";
 
 	}
 
@@ -155,15 +155,15 @@ int main()
 
 				if (red_from == 's' && stupac_from == 'v')
 				{
-					cout << "Enter save name: ";
-					cout << "Saving game!" << endl;
+					cout << "Upisi ime za spremanje datoteke: ";
+					cout << "Spremanje igre!" << endl;
 					cin >> FILENAME;
 					file.open(FILENAME, ios::binary | ios::out);
 					/*file.write((char*)&targetX, sizeof(targetX));
 					file.write((char*)&targetY, sizeof(targetY));*/
 					file.write((char*)&polje, sizeof(polje));
 					file.close();
-					cout << "Game saved!";
+					cout << "Igra spremljena!";
 					return 0;
 				}
 
