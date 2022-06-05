@@ -111,8 +111,6 @@ int main()
 			std::cout << "Greska pri otvaranju " << FILENAME << ". Provjerie jeste li kreirali datoteku i je li ona pravilno napisana!\n";
 			return 0;
 		}
-		/*file.read((char*)&targetX, sizeof(targetX));
-		file.read((char*)&targetY, sizeof(targetY));*/
 		file.read((char*)&polje, sizeof(polje));
 		file.close();
 		std::cout << "Ucitana igra! ";
@@ -156,21 +154,20 @@ int main()
 				char red_from = odabir[0];
 				char stupac_from = odabir[1];
 
+				
 				if ((red_from == 's' && stupac_from == 'v') || (red_from == 'S' && stupac_from == 'v') || (red_from == 'S' && stupac_from == 'V'))
 				{
 					std::cout << "Upisi ime za spremanje datoteke: ";
 					std::cout << "Spremanje igre!" << std::endl;
 					std::cin >> FILENAME;
 					file.open(FILENAME, std::ios::binary | std::ios::out);
-					/*file.write((char*)&targetX, sizeof(targetX));
-					file.write((char*)&targetY, sizeof(targetY));*/
 					file.write((char*)&polje, sizeof(polje));
 					file.close();
 					std::cout << "Igra spremljena!";
 					return 0;
 				}
 
-				if ((odabir[1] > '0' && odabir[1] <= '8') && (odabir[0] >= 'a' && odabir[0] <= 'h'))
+				else if ((odabir[1] > '0' && odabir[1] <= '8') && (odabir[0] >= 'a' && odabir[0] <= 'h'))
 				{
 					selectX = odabir[0] - 96 - 1;
 					selectY = odabir[1] - 48 - 1;
