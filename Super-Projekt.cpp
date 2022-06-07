@@ -18,7 +18,7 @@ public:
 	kvadrat()
 	{
 	}
-	kvadrat(int inputX, int inputY)
+	kvadrat(int inputX, int inputY) //sluzi za ispis polja
 	{
 		x = inputX;
 		y = inputY;
@@ -40,7 +40,7 @@ public:
 		}
 	}
 
-	void ispisPolja()
+	void ispisPolja()             //ispisuje polje + slova sa strane za lakse orjentiranje
 	{
 		std::cout << " " << pijun << " ";
 	}
@@ -99,7 +99,7 @@ int main()
 	std::getline(std::cin, choice);
 	std::string FILENAME;
 
-	if (choice == "Y" || choice == "y")
+	if (choice == "Y" || choice == "y") //ucitavanje
 	{
 		system("cls");
 		std::cout << "Ime spremljene datoteke? ";
@@ -149,13 +149,13 @@ int main()
 		{
 			if (selectSet == false)
 			{
-				std::cout << "\nIzaberi pijuna (npr. a3) ili upisi sv da spremis igru: ";
+				std::cout << "\nIzaberi pijuna (npr. a3) ili upisi \"sv\" da spremis igru: ";
 				getline(std::cin, odabir);
 				char red_from = odabir[0];
 				char stupac_from = odabir[1];
 
 				
-				if ((red_from == 's' && stupac_from == 'v') || (red_from == 'S' && stupac_from == 'v') || (red_from == 'S' && stupac_from == 'V'))
+				if ((red_from == 's' && stupac_from == 'v') || (red_from == 'S' && stupac_from == 'v') || (red_from == 'S' && stupac_from == 'V')) //savanje igre
 				{
 					std::cout << "Upisi ime za spremanje datoteke: ";
 					std::cout << "Spremanje igre!" << std::endl;
@@ -167,7 +167,7 @@ int main()
 					return 0;
 				}
 
-				else if ((odabir[1] > '0' && odabir[1] <= '8') && (odabir[0] >= 'a' && odabir[0] <= 'h'))
+				else if ((odabir[1] > '0' && odabir[1] <= '8') && (odabir[0] >= 'a' && odabir[0] <= 'h')) //provjerava da li je moguce otici na polje koje napadas
 				{
 					selectX = odabir[0] - 96 - 1;
 					selectY = odabir[1] - 48 - 1;
@@ -197,7 +197,7 @@ int main()
 
 		do
 		{
-			std::cout << "\nIzaberi polje koje napadas: ";
+			std::cout << "\nIzaberi polje na koje se pomices: ";
 			getline(std::cin, target);
 			if ((target[1] > '0' && target[1] <= '8') && (target[0] >= 'a' && target[0] <= 'h'))
 			{
@@ -290,7 +290,7 @@ int main()
 
 
 ////
-void promjenaIgraca(char& igrac, bool& novaMeta, bool& selectSet, bool& targetSet)
+void promjenaIgraca(char& igrac, bool& novaMeta, bool& selectSet, bool& targetSet)  //dvostruki napad
 {
 	if (novaMeta == true)
 	{
@@ -331,7 +331,7 @@ void refreshPloce(kvadrat polje[8][8], char trenutacniIgrac)
 {
 	system("cls");
 
-	for (int visina = 8 * 4; visina >= 0; visina--)
+	for (int visina = 8 * 4; visina >= 0; visina--)  // ispis bas ploce
 	{
 		if (visina % 4 == 0)
 		{
