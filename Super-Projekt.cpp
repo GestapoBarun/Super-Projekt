@@ -94,7 +94,7 @@ int main()
 	int selectX, selectY, targetX, targetY;
 
 	std::fstream file;
-	std::cout << "Zelite li ucitati neku od prijasnjih igra? [y/n] ?";
+	std::cout << "Zelite li ucitati neku od prijasnjih igra? [y/n]? ";
 	std::string choice;
 	std::getline(std::cin, choice);
 	std::string FILENAME;
@@ -114,6 +114,7 @@ int main()
 		file.read((char*)&polje, sizeof(polje));
 		file.close();
 		std::cout << "Ucitana igra! ";
+		std::cin.ignore();
 	}
 
 
@@ -150,7 +151,6 @@ int main()
 			{
 				std::cout << "\nIzaberi pijuna (npr. a3) ili upisi sv da spremis igru: ";
 				getline(std::cin, odabir);
-				odabir[0] = tolower(odabir[0]);
 				char red_from = odabir[0];
 				char stupac_from = odabir[1];
 
