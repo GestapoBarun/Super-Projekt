@@ -197,8 +197,61 @@ int main()
 
 		do
 		{
-			std::cout << "\nIzaberi polje na koje se pomices: ";
+			std::cout << "\nIzaberi polje na koje se pomices ili : ";/*\"back\"*/
 			getline(std::cin, target);
+
+			//if (target=="back")
+			//{
+			//	do
+			//	{
+			//		if (selectSet == false)
+			//		{
+			//			std::cout << "\nIzaberi pijuna (npr. a3) ili upisi \"sv\" da spremis igru: ";
+			//			getline(std::cin, odabir);
+			//			char red_from = odabir[0];
+			//			char stupac_from = odabir[1];
+
+
+			//			if ((red_from == 's' && stupac_from == 'v') || (red_from == 'S' && stupac_from == 'v') || (red_from == 'S' && stupac_from == 'V')) //savanje igre
+			//			{
+			//				std::cout << "Upisi ime za spremanje datoteke: ";
+			//				std::cout << "Spremanje igre!" << std::endl;
+			//				std::cin >> FILENAME;
+			//				file.open(FILENAME, std::ios::binary | std::ios::out);
+			//				file.write((char*)&polje, sizeof(polje));
+			//				file.close();
+			//				std::cout << "Igra spremljena!";
+			//				return 0;
+			//			}
+
+			//			else if ((odabir[1] > '0' && odabir[1] <= '8') && (odabir[0] >= 'a' && odabir[0] <= 'h')) //provjerava da li je moguce otici na polje koje napadas
+			//			{
+			//				selectX = odabir[0] - 96 - 1;
+			//				selectY = odabir[1] - 48 - 1;
+
+			//				if (polje[selectX][selectY].getPijun() == trenutacniPotez)
+			//				{
+			//					selectSet = true;
+			//					break;
+			//				}
+			//				else
+			//				{
+			//					std::cout << "Nema " << trenutacniPotez << " pijuna u tome polju.\n";
+			//					polje[selectX][selectY].ispisPolja();
+			//				}
+			//			}
+			//			else
+			//			{
+			//				std::cout << "Krivi upis!.\n";
+			//			}
+			//		}
+			//		else
+			//		{
+			//			break;
+			//		}
+			//	} while (true);
+			//}
+
 			if ((target[1] > '0' && target[1] <= '8') && (target[0] >= 'a' && target[0] <= 'h'))
 			{
 				std::cout << "Valid\n";
