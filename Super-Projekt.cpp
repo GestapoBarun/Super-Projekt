@@ -196,7 +196,7 @@ int main()
 			}
 		} while (true);
 
-
+		
 		do
 		{
 			std::cout << "\nIzaberi polje na koje se pomices ili \"back\" da vratis potez : "; 
